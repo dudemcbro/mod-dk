@@ -154,7 +154,10 @@ REPLACE INTO playercreateinfo (race, class, map, zone, position_x, position_y, p
 -- 9) Remove DK starter gear rows from playercreateinfo_item (class 6) and CharStartOutfit overrides
 DELETE FROM playercreateinfo_item
 WHERE class = 6
-  AND itemid IN (2391, 2386, 2388, 2389, 2587, 1194, 6948);
+  AND itemid IN (2391, 2386, 2388, 2389, 2587, 1194, 6948, 40582);
+-- Stock row: strip the Scourgestone from the stock DK outfit
+INSERT INTO playercreateinfo_item (race, class, itemid, amount, Note) VALUES
+(0, 6, 40582, -1, '[TDB PH] - unsused Scourgestone');
 
 -- CharStartOutfit overrides use IDs 60001-60020 (stock charstartoutfit_dbc has no rows)
 DELETE FROM charstartoutfit_dbc WHERE ID BETWEEN 60001 AND 60020;

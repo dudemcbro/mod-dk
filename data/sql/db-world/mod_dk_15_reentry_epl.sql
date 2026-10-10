@@ -14,9 +14,9 @@ DEALLOCATE PREPARE stmt;
 DELETE FROM `creature_template_model` WHERE `CreatureID` = @DK_NPC_ENTRY;
 DELETE FROM `creature_template` WHERE `entry` = @DK_NPC_ENTRY;
 
-INSERT INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `ScriptName`)
+INSERT INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `unit_class`, `ScriptName`)
 VALUES
-(@DK_NPC_ENTRY, 'Ebon Herald', 'Death Knight Call', 55, 55, 35, 3, 'npc_dk_reentry');
+(@DK_NPC_ENTRY, 'Ebon Herald', 'Death Knight Call', 55, 55, 35, 3, 1, 'npc_dk_reentry');
 
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`)
 VALUES

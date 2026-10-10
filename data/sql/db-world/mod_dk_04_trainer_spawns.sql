@@ -10,8 +10,8 @@ DELETE FROM `creature_template` WHERE `entry` = @DK_TRAINER_ENTRY;
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` = @DK_TRAINER_ENTRY;
 DELETE FROM `trainer` WHERE `Id` = 1013;
 
-INSERT INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `ScriptName`) VALUES
-(@DK_TRAINER_ENTRY, 'Madness', 'Death Knight Trainer', 55, 55, 35, 16, '');
+INSERT INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `unit_class`, `ScriptName`) VALUES
+(@DK_TRAINER_ENTRY, 'Madness', 'Death Knight Trainer', 55, 55, 35, 16, 1, '');
 
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`) VALUES
 (@DK_TRAINER_ENTRY, 0, @DK_TRAINER_DISPLAY, 1, 1);
