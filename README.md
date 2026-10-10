@@ -561,9 +561,9 @@ Repository layout
 | `scripts/` | Python tool that builds the client patch |
 | `.github/workflows/` | CI: builds AzerothCore master with the module on every push and pull request |
 | `patches/` | Optional core patches |
+| `icon.png` | Icon for the AzerothCore module catalogue |
 
-`CMakeLists.txt` is left from older AzerothCore versions; current cores ignore
-it and build every `.cpp` file in `src/`.
+The core builds every `.cpp` file in `src/`; the module needs no CMake file.
 
 Contributing
 ------------
