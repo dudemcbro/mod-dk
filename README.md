@@ -44,12 +44,16 @@ Quick start
    ```
 
 The full steps, requirements, updating and uninstalling are in
-[docs/installation.md](docs/installation.md).
+[docs/installation.md](docs/installation.md); running the module day to day is
+in the [server admin guide](docs/admin-guide.md). Share the
+[player guide](docs/player-guide.md) with your players.
 
 Documentation
 -------------
 | Page | What's in it |
 | --- | --- |
+| [Player guide](docs/player-guide.md) | For players: the client patch, where to train, what you learn when, runeforging, the Ebon Hold story |
+| [Server admin guide](docs/admin-guide.md) | For admins: what the module changes, setup decisions, checking it works, managing spawns, customizing |
 | [Installation](docs/installation.md) | Requirements, install, the SQL files, updating, uninstalling |
 | [The client patch](docs/client-patch.md) | What the player patch changes, building it, the database password |
 | [Configuration](docs/configuration.md) | Every option in `mod_dk.conf` |

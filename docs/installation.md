@@ -127,7 +127,8 @@ python3 scripts/build_runeforge_client_mpq.py --dbc-in <DataDir>/dbc/Spell.dbc
 Each player copies the resulting `client/patch-d.MPQ` into the client's
 `Data/` folder (next to `common.MPQ`) and deletes the client's `Cache/` folder.
 See [The client patch](client-patch.md) for what it changes, its options and
-the database password.
+the database password; the [Player guide](player-guide.md) walks players
+through installing it.
 
 5. Start and check
 ------------------
