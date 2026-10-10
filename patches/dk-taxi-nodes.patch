@@ -1,0 +1,15 @@
+diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
+index 1eb01ca..a83e16b 100644
+--- a/src/server/game/Entities/Player/Player.h
++++ b/src/server/game/Entities/Player/Player.h
+@@ -1158,7 +1158,9 @@ public:
+     PlayerSocial* GetSocial() { return m_social; }
+ 
+     PlayerTaxi m_taxi;
+-    void InitTaxiNodesForLevel() { m_taxi.InitTaxiNodesForLevel(getRace(), getClass(), GetLevel()); }
++    // mod-dk: a script can return false from OnPlayerIsClass(CLASS_DEATH_KNIGHT, CLASS_CONTEXT_TAXI)
++    // to stop Death Knights from knowing every old continent flight path.
++    void InitTaxiNodesForLevel() { m_taxi.InitTaxiNodesForLevel(getRace(), (getClass() == CLASS_DEATH_KNIGHT && !IsClass(CLASS_DEATH_KNIGHT, CLASS_CONTEXT_TAXI)) ? uint32(CLASS_NONE) : uint32(getClass()), GetLevel()); }
+     bool ActivateTaxiPathTo(std::vector<uint32> const& nodes, Creature* npc = nullptr, uint32 spellid = 1);
+     bool ActivateTaxiPathTo(uint32 taxi_path_id, uint32 spellid = 1);
+     void CleanupAfterTaxiFlight();

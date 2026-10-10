@@ -1,0 +1,9 @@
+# Normalize line endings in the repository; SQL, C++ and Python stay LF.
+* text=auto eol=lf
+
+# Game data built by the tools; never diffed or merged as text.
+*.dbc binary
+*.DBC binary
+*.MPQ binary
+*.mpq binary
+*.png binary

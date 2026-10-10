@@ -1,0 +1,17 @@
+# Builds AzerothCore master with this module on every push and pull request,
+# using the AzerothCore reusable workflow that the module template uses.
+name: core-build
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: azerothcore/reusable-workflows/.github/workflows/core_build_modules.yml@main
+    with:
+      module_repo: ${{ github.event.repository.name }}

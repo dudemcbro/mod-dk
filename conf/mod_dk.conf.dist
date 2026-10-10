@@ -1,0 +1,103 @@
+[worldserver]
+
+########################################
+# mod-dk configuration
+########################################
+#
+#    Changes apply after `.reload config` or a restart, except ModDk.StartLevel
+#    and ModDk.MinLevelForHeroicCharacter, which need a restart. Auras that are
+#    already active (presences, diseases) keep their values until cast again.
+#
+#    ModDk.StartLevel
+#        Description: Level new Death Knights start at. Replaces
+#                     StartHeroicPlayerLevel from worldserver.conf.
+#                     55 plays the stock Ebon Hold intro instead of the
+#                     level 1 start this module is built for.
+#        Default:     1
+#                     -1 - Keep StartHeroicPlayerLevel from worldserver.conf
+#
+
+ModDk.StartLevel = 1
+
+#
+#    ModDk.MinLevelForHeroicCharacter
+#        Description: Level of another character the account needs before it
+#                     can create a Death Knight. Replaces
+#                     CharacterCreating.MinLevelForHeroicCharacter from
+#                     worldserver.conf.
+#        Default:     0  - No requirement
+#                     -1 - Keep the worldserver.conf setting
+#
+
+ModDk.MinLevelForHeroicCharacter = 0
+
+#
+#    ModDk.Scaling.Enable
+#        Description: Scale DK damage, healing, presences and minions down below
+#                     level 55 so DKs leveled from 1 do not outclass other classes.
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ModDk.Scaling.Enable = 1
+
+#
+#    ModDk.Scaling.Strength
+#        Description: How much of the low level scaling applies, from 0.0 (none)
+#                     to 1.0 (the full curve). Values in between move every
+#                     scale toward 1.0. The client patch tooltips assume 1.0.
+#        Default:     1.0
+#
+
+ModDk.Scaling.Strength = 1.0
+
+#
+#    ModDk.ThreatBonus.Enable
+#        Description: Extra threat for DK spells below level 30 in Blood or
+#                     Frost Presence, so low level DKs can hold threat.
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ModDk.ThreatBonus.Enable = 1
+
+#
+#    ModDk.SpellProgression.Enable
+#        Description: Remove DK spells above the character's level (table
+#                     mod_dk_spell_progression) on login and level change, and
+#                     teach the level 1 spells.
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ModDk.SpellProgression.Enable = 1
+
+#
+#    ModDk.Reentry.Enable
+#        Description: Let the Ebon Herald (reentry NPC) send level 55+ DKs who
+#                     never finished the Ebon Hold intro back to Acherus.
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ModDk.Reentry.Enable = 1
+
+#
+#    ModDk.EbonHoldRescue.Enable
+#        Description: Send DKs below level 55 found in Ebon Hold on login (for
+#                     example after logging out during the intro cinematic) to
+#                     their racial start.
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ModDk.EbonHoldRescue.Enable = 1
+
+#
+#    ModDk.Debug
+#        Description: Log every scaled DK hit and threat bonus (logger "module").
+#        Default:     0 - Disabled
+#                     1 - Enabled
+#
+
+ModDk.Debug = 0

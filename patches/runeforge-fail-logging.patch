@@ -1,0 +1,43 @@
+--- a/src/server/game/Spells/Spell.cpp
++++ b/src/server/game/Spells/Spell.cpp
+@@ -4639,4 +4639,40 @@ void Spell::SendCastResult(SpellCastResult result)
+         return;
+ 
++    if (m_spellInfo && m_caster->IsPlayer() && m_caster->ToPlayer()->getClass() == CLASS_DEATH_KNIGHT)
++    {
++        bool hasEnchantEffect = false;
++        for (uint8 i = 0; i < MAX_SPELL_EFFECTS; ++i)
++        {
++            uint32 effect = m_spellInfo->Effects[i].Effect;
++            // Runeforging (Rune of Razorice and the others) is SPELL_EFFECT_ENCHANT_ITEM.
++            if (effect == SPELL_EFFECT_ENCHANT_ITEM ||
++                effect == SPELL_EFFECT_ENCHANT_ITEM_PRISMATIC ||
++                effect == SPELL_EFFECT_ENCHANT_ITEM_TEMPORARY ||
++                effect == SPELL_EFFECT_ENCHANT_HELD_ITEM)
++            {
++                hasEnchantEffect = true;
++                break;
++            }
++        }
++
++        if (hasEnchantEffect)
++        {
++            Item* item = m_targets.GetItemTarget();
++            ItemTemplate const* proto = item ? item->GetTemplate() : nullptr;
++            LOG_WARN("spells.runeforge",
++                "Runeforge cast fail: spell={} result={} baseLevel={} spellLevel={} maxLevel={} caster={} class={} targetItem={} reqLevel={} itemLevel={}",
++                m_spellInfo->Id,
++                uint32(result),
++                m_spellInfo->BaseLevel,
++                m_spellInfo->SpellLevel,
++                m_spellInfo->MaxLevel,
++                m_caster->GetGUID().ToString(),
++                uint32(m_caster->ToPlayer()->getClass()),
++                proto ? proto->ItemId : 0,
++                proto ? proto->RequiredLevel : 0,
++                proto ? proto->ItemLevel : 0);
++        }
++    }
++
+     // Xinef: override every possible result, except for gm fail result... breaks many things and goes unnoticed because of this and makes me rage when i find this out
+     if (HasTriggeredCastFlag(TRIGGERED_DONT_REPORT_CAST_ERROR) && result != SPELL_FAILED_BM_OR_INVISGOD)

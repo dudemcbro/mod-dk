@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.bak
+*.swp
+*.log
+build/
+
+# Client patch outputs of scripts/build_runeforge_client_mpq.py. They are
+# built from your own game data and must never be committed.
+/client/DBFilesClient/Spell.dbc
+/client/patch-d.MPQ
+# Any other Blizzard game data files
+*.dbc
+*.MPQ
+*.mpq
