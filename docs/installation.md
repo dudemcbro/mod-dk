@@ -60,7 +60,7 @@ set `-DMODULES=none`, the module is not built. `make install` also copies
 3. Apply the SQL
 ----------------
 Nothing to do in most setups. The world SQL lives in
-[`data/sql/db-world/`](../data/sql/db-world/), and the AzerothCore DB updater
+[`data/sql/world/`](../data/sql/world/), and the AzerothCore DB updater
 applies it when `worldserver` starts, as long as the updater covers the world
 database (`Updates.EnableDatabases`, default `7`) and can find the source tree
 (`SourceDirectory`, empty by default, which means the tree the core was built
@@ -175,7 +175,7 @@ Updating from an older version:
   histories"); run `git fetch origin && git reset --hard origin/main` in
   `modules/mod-dk` (this drops local changes in that folder), or clone it
   again.
-- The SQL moved from `sql/db_world/base/` to `data/sql/db-world/` with new
+- The SQL moved from `sql/db_world/base/` to `data/sql/world/` with new
   names, so the updater applies all of it once on the next start. That is
   safe, since every file is re-runnable.
 - The module now sets the DK start level itself (`ModDk.StartLevel`, default

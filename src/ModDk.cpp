@@ -1597,7 +1597,7 @@ namespace ModDk
             Config.minLevelForHeroicCharacter >= 0 ? "ModDk.MinLevelForHeroicCharacter" : "worldserver.conf"));
 
         if (DkSpellRules.empty())
-            problem("mod_dk_spell_progression is empty or missing; apply data/sql/db-world/mod_dk_02_spell_progression.sql.");
+            problem("mod_dk_spell_progression is empty or missing; apply data/sql/world/mod_dk_02_spell_progression.sql.");
         else
             info(Acore::StringFormat("Spell progression rules: {}.", DkSpellRules.size()));
 
@@ -1605,12 +1605,12 @@ namespace ModDk
         if (QueryResult result = WorldDatabase.Query("SELECT COUNT(*) FROM `trainer_spell` WHERE `TrainerId` = 1013"))
             trainerSpells = result->Fetch()[0].Get<uint32>();
         if (!trainerSpells)
-            problem("TrainerId 1013 has no spells; apply data/sql/db-world/mod_dk_03_trainer_spells_1_60.sql.");
+            problem("TrainerId 1013 has no spells; apply data/sql/world/mod_dk_03_trainer_spells_1_60.sql.");
         else
             info(Acore::StringFormat("Trainer 1013 spells: {}.", trainerSpells));
 
         if (!sObjectMgr->GetCreatureTemplate(MADNESS_ENTRY))
-            problem("The Madness trainer template (creature entry 900001) is missing; apply data/sql/db-world/mod_dk_04_trainer_spawns.sql.");
+            problem("The Madness trainer template (creature entry 900001) is missing; apply data/sql/world/mod_dk_04_trainer_spawns.sql.");
 
         std::unordered_set<std::string> scripts;
         if (QueryResult result = WorldDatabase.Query("SELECT DISTINCT `ScriptName` FROM `spell_script_names` WHERE `ScriptName` LIKE 'spell\\_mod\\_dk\\_%'"))
@@ -1623,7 +1623,7 @@ namespace ModDk
                                   "spell_mod_dk_dnd_scale", "spell_mod_dk_blood_presence_heal" })
         {
             if (!scripts.count(name))
-                problem(Acore::StringFormat("Spell script {} is not registered; apply data/sql/db-world/mod_dk_09_spell_scaling_scripts.sql.", name));
+                problem(Acore::StringFormat("Spell script {} is not registered; apply data/sql/world/mod_dk_09_spell_scaling_scripts.sql.", name));
         }
 
         if (startLevel < DK_EBON_HOLD_MIN_LEVEL)
@@ -1657,7 +1657,7 @@ namespace ModDk
 
         uint32 trainers = countSpawns(MADNESS_ENTRY);
         if (!trainers)
-            problem("No Madness trainers are spawned; apply data/sql/db-world/mod_dk_17_default_spawns.sql or place one with .dk madness add.");
+            problem("No Madness trainers are spawned; apply data/sql/world/mod_dk_17_default_spawns.sql or place one with .dk madness add.");
         else
             info(Acore::StringFormat("Madness trainers spawned: {}.", trainers));
 
@@ -1669,7 +1669,7 @@ namespace ModDk
         if (Config.reentryEnabled)
         {
             if (!countSpawns(REENTRY_NPC_ENTRY))
-                problem("The reentry NPC (creature entry 900000) is not spawned; apply data/sql/db-world/mod_dk_15_reentry_epl.sql.");
+                problem("The reentry NPC (creature entry 900000) is not spawned; apply data/sql/world/mod_dk_15_reentry_epl.sql.");
             if (DkIntroQuests.empty())
                 problem("No Ebon Hold intro quests were found for the reentry NPC.");
             else
