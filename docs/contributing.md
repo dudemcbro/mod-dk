@@ -24,7 +24,7 @@ Repository layout
 | --- | --- |
 | `src/` | The module's C++ scripts and GM commands; the core builds every `.cpp` file here |
 | `conf/mod_dk.conf.dist` | Module settings |
-| `data/sql/db-world/` | World SQL, applied by the DB updater |
+| `data/sql/world/` | World SQL, applied by the DB updater |
 | `sql/install.sql`, `sql/rollback.sql` | Manual install and the uninstall |
 | `scripts/` | Python tool that builds the client patch |
 | `patches/` | Optional core patches |

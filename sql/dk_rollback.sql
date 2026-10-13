@@ -1,5 +1,5 @@
 -- Rollback for mod-dk world changes (acore_world)
--- Reverses every file in data/sql/db-world. Where the module overwrote stock rows,
+-- Reverses every file in data/sql/world. Where the module overwrote stock rows,
 -- the stock AzerothCore values (data/sql/base/db_world) are restored.
 
 -- 1) Remove custom DK reentry NPC and DK trainer (module entries), including
