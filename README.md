@@ -59,7 +59,7 @@ Documentation
 | [Configuration](docs/configuration.md) | Every option in `mod_dk.conf` |
 | [GM commands](docs/gm-commands.md) | `.dk` commands for trainers, runeforges, status and reload |
 | [How it works](docs/how-it-works.md) | Level schedule, scaling curves, core hooks, the intro and reentry |
-| [Optional core patches](docs/core-patches.md) | Flight path discovery and runeforge debug logging |
+| [Optional core patch](docs/core-patches.md) | Flight path discovery for Death Knights |
 | [Troubleshooting](docs/troubleshooting.md) | Common problems and fixes |
 | [Contributing](docs/contributing.md) | How to help, and the repository layout |
 
