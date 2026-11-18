@@ -4,7 +4,65 @@ on:
     branches:
       - 'main'
   pull_request:
+  workflow_dispatch:
 
 jobs:
   codestyle:
     uses: azerothcore/reusable-workflows/.github/workflows/codestyle_modules.yml@main
+
+  cppcheck:
+    runs-on: ubuntu-latest
+    name: C++ Advanced
+    steps:
+      - uses: actions/checkout@v7
+      - name: C++ Advanced
+        run: |
+          sudo apt update -y
+          sudo apt install -y cppcheck
+          cppcheck --force --inline-suppr src/ --output-file=report.txt
+
+          if [ -s report.txt ]; then  # if file is not empty
+            cat report.txt
+            exit 1 # let github action fails
+          fi
+
+  # Applies this module's core patches to AzerothCore master and runs the
+  # same cppcheck as upstream's "C++ Advanced" step on the core files the
+  # patches touch.
+  cppcheck-core-patches:
+    runs-on: ubuntu-latest
+    name: C++ Advanced (patched core files)
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: module
+      - uses: actions/checkout@v7
+        with:
+          repository: azerothcore/azerothcore-wotlk
+          path: azerothcore
+      - name: Apply core patches
+        run: |
+          mapfile -t patches < <(find module/patches -name '*.patch' | sort)
+          for p in "${patches[@]}"; do
+            echo "Applying $p"
+            git -C azerothcore apply --whitespace=nowarn "$GITHUB_WORKSPACE/$p"
+          done
+      - name: C++ Advanced
+        working-directory: azerothcore
+        run: |
+          sudo apt update -y
+          sudo apt install -y cppcheck
+          git add -A
+          mapfile -t files < <(git diff --cached --name-only --diff-filter=d | grep -E '^src/.*\.(c|cc|cpp|h|hpp)$' || true)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No core C++ files touched by patches"
+            exit 0
+          fi
+          printf '%s\n' "${files[@]}"
+          # Headers passed on their own are parsed as C unless told otherwise.
+          cppcheck --force --inline-suppr --language=c++ --suppressions-list=./.suppress.cppcheck "${files[@]}" --output-file=report.txt
+
+          if [ -s report.txt ]; then  # if file is not empty
+            cat report.txt
+            exit 1 # let github action fails
+          fi
