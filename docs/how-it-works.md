@@ -114,8 +114,11 @@ The module answers the core `OnPlayerIsClass` hook:
 - New weapon skills start at 1.
 - DKs below level 55 may leave Ebon Hold without Death Gate (the core
   otherwise keeps a DK there until the intro is done), hearthstone included.
-- With [`patches/dk-taxi-nodes.patch`](core-patches.md), DKs discover flight
-  paths like other classes.
+- The module answers `false` for `CLASS_CONTEXT_TAXI`. With
+  [`patches/dk-taxi-nodes.patch`](core-patches.md) the core asks it before
+  granting the old continent flight paths, so DKs discover them like other
+  classes. Without the patch the core does not ask, DKs keep them, and
+  Alliance DKs cannot fly from Acherus (see [the patch notes](core-patches.md)).
 
 `ModDk.StartLevel` and `ModDk.MinLevelForHeroicCharacter` are applied while
 the core loads its configuration at startup, before the player create data
