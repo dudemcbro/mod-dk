@@ -9,7 +9,7 @@ changes with `.reload config` or a restart; auras that are already active
 
 | Option | Default | Effect |
 | --- | --- | --- |
-| `ModDk.StartLevel` | `1` | Level new DKs start at, replacing `StartHeroicPlayerLevel`; `-1` keeps the `worldserver.conf` value. Restart to change it |
+| `ModDk.StartLevel` | `1` | Level new DKs start at, replacing `StartHeroicPlayerLevel`; `-1` (or `0`) keeps the `worldserver.conf` value. Restart to change it |
 | `ModDk.MinLevelForHeroicCharacter` | `0` | Character level an account needs before it can create a DK, replacing `CharacterCreating.MinLevelForHeroicCharacter`; `-1` keeps the `worldserver.conf` value. Restart to change it |
 | `ModDk.Scaling.Enable` | `1` | Low level damage, healing, presence and minion scaling |
 | `ModDk.Scaling.Strength` | `1.0` | How much of the scaling applies, from `0.0` (none) to `1.0` (the full curve). The client patch tooltips assume `1.0` |

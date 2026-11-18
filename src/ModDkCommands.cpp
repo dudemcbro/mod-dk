@@ -172,10 +172,27 @@ namespace
             handler->PSendSysMessage("Runeforge: failed to spawn aura object (entry {}).", RUNEFORGE_AURA_ENTRY);
         }
 
-        handler->PSendSysMessage(
-            "Runeforge: saved permanent spawn. focus={} guid={} visual={} guid={} aura={} guid={}.",
-            RUNEFORGE_FOCUS_ENTRY, focusGuid, entry, mainGuid, RUNEFORGE_AURA_ENTRY, auraGuid
-        );
+        // The focus is what makes the runeforge work; the visual and aura are cosmetic.
+        if (mainGuid && auraGuid)
+        {
+            handler->PSendSysMessage(
+                "Runeforge: saved permanent spawn. focus={} guid={} visual={} guid={} aura={} guid={}.",
+                RUNEFORGE_FOCUS_ENTRY, focusGuid, entry, mainGuid, RUNEFORGE_AURA_ENTRY, auraGuid
+            );
+        }
+        else
+        {
+            std::string saved = Acore::StringFormat("focus={} guid={}", RUNEFORGE_FOCUS_ENTRY, focusGuid);
+            if (mainGuid)
+                saved += Acore::StringFormat(" visual={} guid={}", entry, mainGuid);
+            if (auraGuid)
+                saved += Acore::StringFormat(" aura={} guid={}", RUNEFORGE_AURA_ENTRY, auraGuid);
+
+            handler->PSendSysMessage(
+                "Runeforge: saved a working runeforge without its {}: {}. Remove it with .dk rf remove.",
+                !mainGuid && !auraGuid ? "visual and aura" : (!mainGuid ? "visual" : "aura"), saved
+            );
+        }
 
         return true;
     }
