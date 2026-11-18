@@ -19,8 +19,9 @@ adds no hook and changes nothing when no script answers that context.
 It only affects characters created after it is applied: known nodes are saved,
 so existing DKs keep the flight paths they already have.
 
-The same change is proposed upstream to AzerothCore. Once a core release
-includes it, the patch is no longer needed. It applies to current
+The same change is proposed upstream to AzerothCore in
+[azerothcore-wotlk#28470](https://github.com/azerothcore/azerothcore-wotlk/pull/28470).
+Once a core release includes it, the patch is no longer needed. It applies to current
 `azerothcore-wotlk` `master` and to the mod-playerbots fork (`Playerbot`
 branch). Apply it from the root of your AzerothCore source tree and rebuild:
 
