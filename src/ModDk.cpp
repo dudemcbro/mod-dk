@@ -111,8 +111,9 @@ namespace
     }
 
     // ModDk.StartLevel and ModDk.MinLevelForHeroicCharacter replace the matching
-    // worldserver.conf settings, unless set to -1. This runs while the core loads its
-    // config at startup, before the player create data (and its stats check) is loaded.
+    // worldserver.conf settings, unless set to -1 (StartLevel: 0 or below). This runs
+    // while the core loads its config at startup, before the player create data (and
+    // its stats check) is loaded.
     void ApplyCoreSettings()
     {
         if (Config.startLevel > 0)
