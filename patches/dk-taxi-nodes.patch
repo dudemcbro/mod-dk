@@ -1,5 +1,5 @@
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
-index deb83cd..22f6d25 100644
+index deb83cd..d4fbe66 100644
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
 @@ -2611,6 +2611,19 @@ void Player::InitTalentForLevel()
@@ -22,19 +22,6 @@ index deb83cd..22f6d25 100644
  void Player::InitStatsForLevel(bool reapplyMods)
  {
      if (reapplyMods)                                        //reapply stats values only on .reset stats (level) command
-@@ -10551,9 +10564,9 @@ bool Player::ActivateTaxiPathTo(std::vector<uint32> const& nodes, Creature* npc
-     //
-     // Hack-Fix for Alliance not being able to use Acherus taxi. There is
-     // only one mount ID for both sides. Probably not good to use 315 in case DBC nodes
--    // change but I couldn't find a suitable alternative. OK to use class because only DK
--    // can use this taxi.
--    uint32 mount_display_id = sObjectMgr->GetTaxiMountDisplayId(sourcenode, GetTeamId(true), npc == nullptr || (sourcenode == 315 && IsClass(CLASS_DEATH_KNIGHT, CLASS_CONTEXT_TAXI)));
-+    // change but I couldn't find a suitable alternative. No class check: only DKs reach
-+    // this taxi, and scripts may answer CLASS_CONTEXT_TAXI differently for them.
-+    uint32 mount_display_id = sObjectMgr->GetTaxiMountDisplayId(sourcenode, GetTeamId(true), npc == nullptr || sourcenode == 315);
- 
-     // in spell case allow 0 model
-     if ((mount_display_id == 0 && spellid == 0) || sourcepath == 0)
 diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
 index 8625063..c47af10 100644
 --- a/src/server/game/Entities/Player/Player.h

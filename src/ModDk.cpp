@@ -1039,9 +1039,8 @@ public:
             case CLASS_CONTEXT_TALENT_POINT_CALC:
             // New weapon skills start at 1 like for other classes instead of (level - 1) * 5.
             case CLASS_CONTEXT_SKILL:
-            // No free old world flight paths. The core only asks this when it grants them with
-            // patches/dk-taxi-nodes.patch, which also stops the Acherus taxi (node 315) mount lookup
-            // from asking it. Without the patch, Alliance DKs get no mount for flights from Acherus.
+            // No free old world flight paths. The core only asks this before granting them
+            // with patches/dk-taxi-nodes.patch.
             case CLASS_CONTEXT_TAXI:
                 return false;
             // The core keeps DKs without Death Gate in Ebon Hold until they finish the intro.

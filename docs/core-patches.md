@@ -16,12 +16,6 @@ CLASS_CONTEXT_TAXI)` before it grants those flight paths. This module answers
 `false` for DKs, so they discover flight paths like other classes. The patch
 adds no hook and changes nothing when no script answers that context.
 
-The core also asks `CLASS_CONTEXT_TAXI` when it picks the mount for a flight
-from Acherus (node 315), because that node only has a Horde mount. With this
-module's answer, Alliance DKs get no mount there and the flight fails. The
-patch drops the class check from that lookup (only DKs reach that node), so
-the flight works again.
-
 It only affects characters created after it is applied: known nodes are saved,
 so existing DKs keep the flight paths they already have.
 

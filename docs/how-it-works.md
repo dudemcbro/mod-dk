@@ -117,8 +117,7 @@ The module answers the core `OnPlayerIsClass` hook:
 - The module answers `false` for `CLASS_CONTEXT_TAXI`. With
   [`patches/dk-taxi-nodes.patch`](core-patches.md) the core asks it before
   granting the old continent flight paths, so DKs discover them like other
-  classes. Without the patch the core does not ask, DKs keep them, and
-  Alliance DKs cannot fly from Acherus (see [the patch notes](core-patches.md)).
+  classes. Without the patch the core does not ask, and DKs keep them.
 
 `ModDk.StartLevel` and `ModDk.MinLevelForHeroicCharacter` are applied while
 the core loads its configuration at startup, before the player create data
