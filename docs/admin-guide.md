@@ -132,8 +132,8 @@ Other modules
   Knight trainers at TrainerId 1013, so they teach this module's schedule.
 - Other modules' starter items in `playercreateinfo_item` are kept; only the
   DK gear rows are replaced.
-- [Optional core patches](core-patches.md): stop DKs from knowing every old
-  world flight path, or log runeforge cast failures.
+- [Optional core patch](core-patches.md): stop DKs from knowing every old
+  world flight path.
 
 Uninstalling
 ------------
